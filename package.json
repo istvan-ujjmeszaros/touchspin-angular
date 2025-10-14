@@ -1,0 +1,17 @@
+{
+  "name": "touchspin-angular-workspace",
+  "private": true,
+  "version": "1.0.0",
+  "packageManager": "yarn@4.5.3",
+  "workspaces": [
+    "packages/angular",
+    "packages/examples"
+  ],
+  "scripts": {
+    "build": "yarn workspace @touchspin/angular build",
+    "test": "yarn workspace @touchspin/angular test",
+    "test:watch": "yarn workspace @touchspin/angular test:watch",
+    "test:coverage": "yarn workspace @touchspin/angular test:coverage",
+    "dev": "yarn workspace touchspin-angular-examples dev"
+  }
+}
