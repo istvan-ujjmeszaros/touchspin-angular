@@ -7,6 +7,6 @@
     "build": "echo 'Angular CLI app - to be implemented'"
   },
   "dependencies": {
-    "@touchspin/angular": "workspace:*"
+    "@touchspin/angular": "*"
   }
 }
