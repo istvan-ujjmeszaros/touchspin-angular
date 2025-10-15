@@ -16,9 +16,9 @@ const config: Config = {
   moduleNameMapper: {
     '^@touchspin/angular$': '<rootDir>/src/public-api.ts',
     '^@touchspin/angular/(.*)$': '<rootDir>/src/$1',
-    '^@touchspin/core$': '<rootDir>/../../../packages/core/dist/index.js',
-    '^@touchspin/core/(.*)$': '<rootDir>/../../../packages/core/dist/$1',
-    '^@touchspin/renderer-(.*)$': '<rootDir>/../../../packages/renderers/$1/dist/index.js',
+    '^@touchspin/core$': '<rootDir>/../../node_modules/@touchspin/core/dist/index.js',
+    '^@touchspin/core/(.*)$': '<rootDir>/../../node_modules/@touchspin/core/dist/$1',
+    '^@touchspin/renderer-(.*)$': '<rootDir>/../../node_modules/@touchspin/renderer-$1/dist/index.js',
   },
   testMatch: ['**/tests/**/*.spec.ts'],
   collectCoverageFrom: ['src/**/*.ts', '!src/**/*.d.ts', '!src/**/index.ts', '!src/public-api.ts'],
@@ -26,6 +26,7 @@ const config: Config = {
   coverageReporters: ['html', 'text-summary', 'lcovonly'],
   moduleFileExtensions: ['ts', 'html', 'js', 'json', 'mjs'],
   modulePathIgnorePatterns: ['<rootDir>/dist/'],
+  transformIgnorePatterns: ['node_modules/(?!(@angular|@touchspin|rxjs)/)'],
 };
 
 export default config;
