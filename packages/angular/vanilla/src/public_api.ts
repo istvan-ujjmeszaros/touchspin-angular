@@ -29,7 +29,6 @@ import { VanillaRenderer } from '@touchspin/renderer-vanilla';
         [attr.aria-labelledby]="ariaLabelledBy"
         (blur)="onInputBlur()"
         (focus)="onInputFocus()"
-        (keydown)="onKeyDown($event)"
       />
       @if (name) {
         <input type="hidden" [name]="name + '_display'" [value]="currentValue" />

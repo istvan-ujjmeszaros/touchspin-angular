@@ -29,7 +29,6 @@ import { Bootstrap3Renderer } from '@touchspin/renderer-bootstrap3';
         [attr.aria-labelledby]="ariaLabelledBy"
         (blur)="onInputBlur()"
         (focus)="onInputFocus()"
-        (keydown)="onKeyDown($event)"
       />
       @if (name) {
         <input type="hidden" [name]="name + '_display'" [value]="currentValue" />

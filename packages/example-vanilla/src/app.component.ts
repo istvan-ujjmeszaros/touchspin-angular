@@ -118,12 +118,12 @@ import { TouchSpinVanillaComponent } from '@touchspin/angular/vanilla';
         <h2>6. Keyboard Navigation</h2>
         <p>Focus the input and try these keyboard shortcuts:</p>
         <ul class="shortcuts">
-          <li><kbd>↑</kbd> Arrow Up - Increment by step</li>
-          <li><kbd>↓</kbd> Arrow Down - Decrement by step</li>
-          <li><kbd>Page Up</kbd> - Increment by 10× step</li>
-          <li><kbd>Page Down</kbd> - Decrement by 10× step</li>
-          <li><kbd>Home</kbd> - Jump to minimum value</li>
-          <li><kbd>End</kbd> - Jump to maximum value</li>
+          <li><kbd>↑</kbd> Arrow Up - Increment by step (Core handles)</li>
+          <li><kbd>↓</kbd> Arrow Down - Decrement by step (Core handles)</li>
+          <li><kbd>Page Up</kbd> - Scrolls page (Browser native)</li>
+          <li><kbd>Page Down</kbd> - Scrolls page (Browser native)</li>
+          <li><kbd>Home</kbd> - Cursor to start (Browser native)</li>
+          <li><kbd>End</kbd> - Cursor to end (Browser native)</li>
         </ul>
         <div class="demo">
           <touch-spin
@@ -134,6 +134,32 @@ import { TouchSpinVanillaComponent } from '@touchspin/angular/vanilla';
             ariaLabel="Keyboard navigation demo"
           ></touch-spin>
           <p class="output">Value: <strong>{{ keyboardValue }}</strong></p>
+        </div>
+      </section>
+
+      <!-- Section 6.5: Custom Keyboard Handler -->
+      <section>
+        <h2>6.5. Custom Keyboard Handler</h2>
+        <p>Custom handler: PageUp/PageDown increment/decrement by 10</p>
+        <ul class="shortcuts">
+          <li><kbd>↑</kbd> Arrow Up - Increment by 1 (Core)</li>
+          <li><kbd>↓</kbd> Arrow Down - Decrement by 1 (Core)</li>
+          <li><kbd>Page Up</kbd> - Add 10 (Custom handler)</li>
+          <li><kbd>Page Down</kbd> - Subtract 10 (Custom handler)</li>
+          <li><kbd>Escape</kbd> - Reset to 50 (Custom handler)</li>
+        </ul>
+        <div class="demo">
+          <touch-spin
+            #customKeyboardSpinner
+            [(ngModel)]="customKeyboardValue"
+            [min]="0"
+            [max]="100"
+            [step]="1"
+            (keydown)="handleCustomKeyboard($event, customKeyboardSpinner)"
+            ariaLabel="Custom keyboard handler demo"
+          ></touch-spin>
+          <p class="output">Value: <strong>{{ customKeyboardValue }}</strong></p>
+          <p class="hint">{{ lastKeyPressed || 'Press a key to see custom handler in action' }}</p>
         </div>
       </section>
 
@@ -224,6 +250,10 @@ export class AppComponent {
   // Section 6: Keyboard
   keyboardValue = 50;
 
+  // Section 6.5: Custom Keyboard Handler
+  customKeyboardValue = 50;
+  lastKeyPressed = '';
+
   // Section 7: Imperative API
   imperativeValue = 25;
 
@@ -251,5 +281,30 @@ export class AppComponent {
 
   logValue(spinner: any) {
     console.log('getValue():', spinner.getValue());
+  }
+
+  handleCustomKeyboard(event: KeyboardEvent, spinner: any) {
+    const core = spinner.getCore();
+
+    if (event.key === 'PageUp') {
+      event.preventDefault(); // Prevent page scroll
+      const newValue = Math.min(core.getValue() + 10, 100);
+      core.setValue(newValue);
+      this.lastKeyPressed = 'PageUp pressed - added 10';
+      console.log('Custom handler: PageUp -> +10, new value:', newValue);
+    } else if (event.key === 'PageDown') {
+      event.preventDefault(); // Prevent page scroll
+      const newValue = Math.max(core.getValue() - 10, 0);
+      core.setValue(newValue);
+      this.lastKeyPressed = 'PageDown pressed - subtracted 10';
+      console.log('Custom handler: PageDown -> -10, new value:', newValue);
+    } else if (event.key === 'Escape') {
+      event.preventDefault();
+      core.setValue(50);
+      this.lastKeyPressed = 'Escape pressed - reset to 50';
+      console.log('Custom handler: Escape -> reset to 50');
+    } else if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+      this.lastKeyPressed = `${event.key} pressed - Core handles this (increment/decrement by step)`;
+    }
   }
 }

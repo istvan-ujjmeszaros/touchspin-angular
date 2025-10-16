@@ -49,7 +49,6 @@ import type { TouchSpinChangeMeta, TouchSpinHandle } from './types';
         [attr.aria-labelledby]="ariaLabelledBy"
         (blur)="onInputBlur()"
         (focus)="onInputFocus()"
-        (keydown)="onKeyDown($event)"
       />
       @if (name) {
         <input type="hidden" [name]="name + '_display'" [value]="currentValue" />
@@ -421,65 +420,5 @@ export class TouchSpinComponent
   onInputBlur(): void {
     this.onTouched();
     this.blurred.emit();
-  }
-
-  onKeyDown(event: KeyboardEvent): void {
-    if (this.disabled || this.readOnly) {
-      return;
-    }
-
-    const { key } = event;
-    const stepValue = this.step ?? 1;
-    const largeStep = stepValue * 10;
-
-    switch (key) {
-      case 'ArrowUp':
-        event.preventDefault();
-        event.stopPropagation();
-        event.stopImmediatePropagation();
-        this.increment();
-        break;
-      case 'ArrowDown':
-        event.preventDefault();
-        event.stopPropagation();
-        event.stopImmediatePropagation();
-        this.decrement();
-        break;
-      case 'PageUp':
-        event.preventDefault();
-        event.stopPropagation();
-        event.stopImmediatePropagation();
-        // Increment by 10x step
-        if (this.instance) {
-          const newValue = this.currentValue + largeStep;
-          this.instance.setValue(newValue);
-        }
-        break;
-      case 'PageDown':
-        event.preventDefault();
-        event.stopPropagation();
-        event.stopImmediatePropagation();
-        // Decrement by 10x step
-        if (this.instance) {
-          const newValue = this.currentValue - largeStep;
-          this.instance.setValue(newValue);
-        }
-        break;
-      case 'Home':
-        event.preventDefault();
-        event.stopPropagation();
-        event.stopImmediatePropagation();
-        if (this.min !== undefined) {
-          this.setValue(this.min);
-        }
-        break;
-      case 'End':
-        event.preventDefault();
-        event.stopPropagation();
-        if (this.max !== undefined) {
-          this.setValue(this.max);
-        }
-        break;
-    }
   }
 }
