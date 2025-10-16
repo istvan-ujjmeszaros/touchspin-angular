@@ -1,52 +1,81 @@
 # TouchSpin Angular
 
-Angular adapter for TouchSpin numeric input spinner with ControlValueAccessor (v5.0.1-alpha.0)
+Angular adapter for the TouchSpin number input component with per-renderer support.
+
+## Features
+
+- ✅ Native Angular components with `ControlValueAccessor`
+- ✅ Reactive and template-driven forms support
+- ✅ Per-renderer subpath imports (Bootstrap 3/4/5, Tailwind, Vanilla)
+- ✅ Standalone components (Angular 14+)
+- ✅ SSR/Angular Universal compatible
+- ✅ Full keyboard navigation and ARIA attributes
+- ✅ Comprehensive test coverage
 
 ## Installation
 
 ```bash
-npm install @touchspin/angular@alpha @touchspin/core@alpha
+npm install @touchspin/angular @touchspin/core @touchspin/renderer-bootstrap5
 ```
 
-## Usage
-
-Import from per-renderer subpaths:
+## Quick Start
 
 ```typescript
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { TouchSpinBootstrap5Component } from '@touchspin/angular/bootstrap5';
 
 @Component({
+  selector: 'app-root',
   standalone: true,
   imports: [FormsModule, TouchSpinBootstrap5Component],
   template: `
-    <touch-spin [(ngModel)]="value" [min]="0" [max]="100" [step]="5" />
+    <touch-spin
+      [(ngModel)]="quantity"
+      [min]="0"
+      [max]="100"
+      [step]="1"
+    ></touch-spin>
+    <p>Quantity: {{ quantity }}</p>
   `
 })
 export class AppComponent {
-  value = 50;
+  quantity = 10;
 }
 ```
 
-## Available Renderers
+## Documentation
 
-- `@touchspin/angular/bootstrap3` - Bootstrap 3 renderer
-- `@touchspin/angular/bootstrap4` - Bootstrap 4 renderer
-- `@touchspin/angular/bootstrap5` - Bootstrap 5 renderer
-- `@touchspin/angular/tailwind` - Tailwind CSS renderer
-- `@touchspin/angular/vanilla` - Vanilla CSS renderer
+See the [package README](./packages/angular/README.md) for complete documentation, API reference, and examples.
 
 ## Development
 
 ```bash
-yarn install
-yarn build
-yarn test
+# Install dependencies
+npm install
+
+# Build the library
+npm run build
+
+# Run tests
+npm run test
+
+# Run tests with coverage
+npm run test:coverage
+
+# Run tests in watch mode
+npm run test:watch
 ```
 
-## Examples
+## Package Structure
 
-See `packages/examples/` for full examples (to be implemented).
+```
+touchspin-angular/
+├── packages/
+│   ├── angular/          # Main adapter package
+│   └── examples/         # Example applications
+```
 
 ## License
 
-MIT
+MIT © TouchSpin Contributors

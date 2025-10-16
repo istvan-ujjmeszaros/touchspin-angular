@@ -40,8 +40,15 @@ import type { TouchSpinChangeMeta, TouchSpinHandle } from './types';
         [disabled]="disabled"
         [readonly]="readOnly"
         [attr.data-testid]="inputTestId"
-        (blur)="onTouched()"
+        [attr.role]="'spinbutton'"
+        [attr.aria-valuenow]="currentValue"
+        [attr.aria-valuemin]="min"
+        [attr.aria-valuemax]="max"
+        [attr.aria-label]="ariaLabel"
+        [attr.aria-labelledby]="ariaLabelledBy"
+        (blur)="onInputBlur()"
         (focus)="onInputFocus()"
+        (keydown)="onKeyDown($event)"
       />
       @if (name) {
         <input type="hidden" [name]="name + '_display'" [value]="currentValue" />
@@ -146,11 +153,18 @@ export class TouchSpinComponent
   // Advanced
   @Input() coreOptions?: Partial<TouchSpinCoreOptions>;
 
+  // ARIA
+  @Input() ariaLabel?: string;
+  @Input() ariaLabelledBy?: string;
+
   // Renderer (injected by per-renderer wrappers)
   @Input() renderer: any;
 
   // Events
   @Output() valueChange = new EventEmitter<number>();
+  @Output() change = new EventEmitter<{ value: number; meta: TouchSpinChangeMeta }>();
+  @Output() blurred = new EventEmitter<void>();
+  @Output() focused = new EventEmitter<void>();
 
   // Internal state
   private instance: TouchSpinCorePublicAPI | null = null;
@@ -370,6 +384,15 @@ export class TouchSpinComponent
 
       // Emit value change event
       this.valueChange.emit(numValue);
+
+      // Emit detailed change event with metadata
+      this.change.emit({
+        value: numValue,
+        meta: {
+          source: 'user',
+          action: 'input',
+        },
+      });
     };
 
     input.addEventListener('change', this.changeListener);
@@ -388,6 +411,71 @@ export class TouchSpinComponent
   }
 
   onInputFocus(): void {
-    // Could add focus event emission here if needed
+    this.focused.emit();
+  }
+
+  onInputBlur(): void {
+    this.onTouched();
+    this.blurred.emit();
+  }
+
+  onKeyDown(event: KeyboardEvent): void {
+    if (this.disabled || this.readOnly) {
+      return;
+    }
+
+    const { key } = event;
+    const stepValue = this.step ?? 1;
+    const largeStep = stepValue * 10;
+
+    switch (key) {
+      case 'ArrowUp':
+        event.preventDefault();
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        this.increment();
+        break;
+      case 'ArrowDown':
+        event.preventDefault();
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        this.decrement();
+        break;
+      case 'PageUp':
+        event.preventDefault();
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        // Increment by 10x step
+        if (this.instance) {
+          const newValue = this.currentValue + largeStep;
+          this.instance.setValue(newValue);
+        }
+        break;
+      case 'PageDown':
+        event.preventDefault();
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        // Decrement by 10x step
+        if (this.instance) {
+          const newValue = this.currentValue - largeStep;
+          this.instance.setValue(newValue);
+        }
+        break;
+      case 'Home':
+        event.preventDefault();
+        event.stopPropagation();
+        event.stopImmediatePropagation();
+        if (this.min !== undefined) {
+          this.setValue(this.min);
+        }
+        break;
+      case 'End':
+        event.preventDefault();
+        event.stopPropagation();
+        if (this.max !== undefined) {
+          this.setValue(this.max);
+        }
+        break;
+    }
   }
 }

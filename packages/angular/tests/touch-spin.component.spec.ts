@@ -668,6 +668,249 @@ describe('TouchSpinComponent', () => {
     });
   });
 
+  describe('ARIA attributes', () => {
+    it('should have role="spinbutton"', () => {
+      expect(inputElement.getAttribute('role')).toBe('spinbutton');
+    });
+
+    it('should set aria-valuenow to current value', async () => {
+      component.setValue(25);
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(inputElement.getAttribute('aria-valuenow')).toBe('25');
+    });
+
+    it('should set aria-valuemin when min is provided', async () => {
+      component.min = 10;
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(inputElement.getAttribute('aria-valuemin')).toBe('10');
+    });
+
+    it('should set aria-valuemax when max is provided', async () => {
+      component.max = 100;
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(inputElement.getAttribute('aria-valuemax')).toBe('100');
+    });
+
+    it('should set aria-label when ariaLabel is provided', async () => {
+      component.ariaLabel = 'Quantity';
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(inputElement.getAttribute('aria-label')).toBe('Quantity');
+    });
+
+    it('should set aria-labelledby when ariaLabelledBy is provided', async () => {
+      component.ariaLabelledBy = 'label-id';
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(inputElement.getAttribute('aria-labelledby')).toBe('label-id');
+    });
+  });
+
+  describe('keyboard navigation', () => {
+    it('should increment value on ArrowUp', async () => {
+      // Create fresh component with min/max set before initialization
+      const newFixture = TestBed.createComponent(TouchSpinComponent);
+      const newComponent = newFixture.componentInstance;
+      newComponent.renderer = VanillaRenderer;
+      newComponent.min = 0;
+      newComponent.max = 100;
+      newComponent.step = 1;
+      newComponent.defaultValue = 5;
+
+      newFixture.detectChanges();
+      await newFixture.whenStable();
+
+      const input = newFixture.nativeElement.querySelector('input[type="number"]');
+      const event = new KeyboardEvent('keydown', { key: 'ArrowUp' });
+      const preventDefaultSpy = jest.spyOn(event, 'preventDefault');
+
+      input.dispatchEvent(event);
+      newFixture.detectChanges();
+      await newFixture.whenStable();
+
+      expect(preventDefaultSpy).toHaveBeenCalled();
+      expect(newComponent.getValue()).toBe(6);
+
+      newFixture.destroy();
+    });
+
+    it('should decrement value on ArrowDown', async () => {
+      // Create fresh component with min/max set before initialization
+      const newFixture = TestBed.createComponent(TouchSpinComponent);
+      const newComponent = newFixture.componentInstance;
+      newComponent.renderer = VanillaRenderer;
+      newComponent.min = 0;
+      newComponent.max = 100;
+      newComponent.step = 1;
+      newComponent.defaultValue = 5;
+
+      newFixture.detectChanges();
+      await newFixture.whenStable();
+
+      const input = newFixture.nativeElement.querySelector('input[type="number"]');
+      const event = new KeyboardEvent('keydown', { key: 'ArrowDown' });
+      const preventDefaultSpy = jest.spyOn(event, 'preventDefault');
+
+      input.dispatchEvent(event);
+      newFixture.detectChanges();
+      await newFixture.whenStable();
+
+      expect(preventDefaultSpy).toHaveBeenCalled();
+      expect(newComponent.getValue()).toBe(4);
+
+      newFixture.destroy();
+    });
+
+    it('should increment by 10x step on PageUp', async () => {
+      component.step = 1;
+      component.setValue(5);
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      const event = new KeyboardEvent('keydown', { key: 'PageUp' });
+      const preventDefaultSpy = jest.spyOn(event, 'preventDefault');
+
+      inputElement.dispatchEvent(event);
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(preventDefaultSpy).toHaveBeenCalled();
+      expect(component.getValue()).toBe(15);
+    });
+
+    it('should decrement by 10x step on PageDown', async () => {
+      component.step = 1;
+      component.setValue(20);
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      const event = new KeyboardEvent('keydown', { key: 'PageDown' });
+      const preventDefaultSpy = jest.spyOn(event, 'preventDefault');
+
+      inputElement.dispatchEvent(event);
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(preventDefaultSpy).toHaveBeenCalled();
+      expect(component.getValue()).toBe(10);
+    });
+
+    it('should jump to min on Home key', async () => {
+      component.min = 0;
+      component.max = 100;
+      component.setValue(50);
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      const event = new KeyboardEvent('keydown', { key: 'Home' });
+      const preventDefaultSpy = jest.spyOn(event, 'preventDefault');
+
+      inputElement.dispatchEvent(event);
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(preventDefaultSpy).toHaveBeenCalled();
+      expect(component.getValue()).toBe(0);
+    });
+
+    it('should jump to max on End key', async () => {
+      component.min = 0;
+      component.max = 100;
+      component.setValue(50);
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      const event = new KeyboardEvent('keydown', { key: 'End' });
+      const preventDefaultSpy = jest.spyOn(event, 'preventDefault');
+
+      inputElement.dispatchEvent(event);
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(preventDefaultSpy).toHaveBeenCalled();
+      expect(component.getValue()).toBe(100);
+    });
+
+    it('should not respond to keyboard when disabled', async () => {
+      component.setValue(5);
+      component.disabled = true;
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      const event = new KeyboardEvent('keydown', { key: 'ArrowUp' });
+      inputElement.dispatchEvent(event);
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(component.getValue()).toBe(5);
+    });
+
+    it('should not respond to keyboard when readOnly', async () => {
+      component.setValue(5);
+      component.readOnly = true;
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      const event = new KeyboardEvent('keydown', { key: 'ArrowUp' });
+      inputElement.dispatchEvent(event);
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(component.getValue()).toBe(5);
+    });
+  });
+
+  describe('event outputs', () => {
+    it('should emit blurred event when input loses focus', async () => {
+      const emitted: void[] = [];
+      component.blurred.subscribe(() => emitted.push(undefined));
+
+      inputElement.dispatchEvent(new Event('blur'));
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(emitted.length).toBe(1);
+    });
+
+    it('should emit focused event when input gains focus', async () => {
+      const emitted: void[] = [];
+      component.focused.subscribe(() => emitted.push(undefined));
+
+      inputElement.dispatchEvent(new Event('focus'));
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(emitted.length).toBe(1);
+    });
+
+    it('should emit change event with metadata when value changes', async () => {
+      const emitted: Array<{ value: number; meta: any }> = [];
+      component.change.subscribe((event) => emitted.push(event));
+
+      // Simulate user input
+      inputElement.value = '42';
+      inputElement.dispatchEvent(new Event('change'));
+
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(emitted.length).toBe(1);
+      expect(emitted[0].value).toBe(42);
+      expect(emitted[0].meta).toEqual({
+        source: 'user',
+        action: 'input',
+      });
+    });
+  });
+
   describe('coverage edge cases', () => {
     it('should handle NaN input gracefully in writeValue', async () => {
       // TypeScript won't allow NaN directly, so we cast

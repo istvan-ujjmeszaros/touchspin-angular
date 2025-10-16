@@ -58,6 +58,12 @@ export interface TouchSpinInputs {
   /** CSS class for input element */
   inputClass?: string;
 
+  /** ARIA label for accessibility */
+  ariaLabel?: string;
+
+  /** ARIA labelledby for accessibility */
+  ariaLabelledBy?: string;
+
   /** Additional core options */
   coreOptions?: Partial<TouchSpinCoreOptions>;
 }
@@ -66,8 +72,17 @@ export interface TouchSpinInputs {
  * Outputs (events) emitted by TouchSpin component
  */
 export interface TouchSpinOutputs {
-  /** Emitted when value changes */
+  /** Emitted when value changes (simple number value) */
   valueChange: number;
+
+  /** Emitted when value changes (detailed with metadata) */
+  change: { value: number; meta: TouchSpinChangeMeta };
+
+  /** Emitted when input loses focus */
+  blurred: void;
+
+  /** Emitted when input gains focus */
+  focused: void;
 }
 
 /**

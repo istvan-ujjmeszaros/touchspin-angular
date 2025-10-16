@@ -21,8 +21,15 @@ import { Bootstrap3Renderer } from '@touchspin/renderer-bootstrap3';
         [disabled]="disabled"
         [readonly]="readOnly"
         [attr.data-testid]="inputTestId"
-        (blur)="onTouched()"
+        [attr.role]="'spinbutton'"
+        [attr.aria-valuenow]="currentValue"
+        [attr.aria-valuemin]="min"
+        [attr.aria-valuemax]="max"
+        [attr.aria-label]="ariaLabel"
+        [attr.aria-labelledby]="ariaLabelledBy"
+        (blur)="onInputBlur()"
         (focus)="onInputFocus()"
+        (keydown)="onKeyDown($event)"
       />
       @if (name) {
         <input type="hidden" [name]="name + '_display'" [value]="currentValue" />
