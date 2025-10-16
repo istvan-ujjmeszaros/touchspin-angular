@@ -4,13 +4,13 @@
   "version": "1.0.0",
   "workspaces": [
     "packages/angular",
-    "packages/examples"
+    "packages/example-vanilla"
   ],
   "scripts": {
     "build": "npm run build -w @touchspin/angular",
     "test": "npm run test -w @touchspin/angular",
     "test:watch": "npm run test:watch -w @touchspin/angular",
     "test:coverage": "npm run test:coverage -w @touchspin/angular",
-    "dev": "npm run dev -w touchspin-angular-examples"
+    "dev:vanilla": "npm run dev -w example-vanilla"
   }
 }
