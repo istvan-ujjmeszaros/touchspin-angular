@@ -8,6 +8,7 @@
 import { isPlatformBrowser } from '@angular/common';
 import {
   type AfterViewInit,
+  ChangeDetectorRef,
   Component,
   type ElementRef,
   EventEmitter,
@@ -68,6 +69,7 @@ export class TouchSpinComponent
 {
   private platformId = inject(PLATFORM_ID);
   private isBrowser = isPlatformBrowser(this.platformId);
+  private cdr = inject(ChangeDetectorRef);
 
   @ViewChild('input', { static: true }) inputRef!: ElementRef<HTMLInputElement>;
 
@@ -191,6 +193,8 @@ export class TouchSpinComponent
     if (!this.isBrowser) return;
 
     this.initializeTouchSpin();
+    // Trigger change detection to update ARIA attributes after initialization
+    this.cdr.detectChanges();
   }
 
   ngOnChanges(changes: SimpleChanges): void {

@@ -124,7 +124,7 @@ kbd {
   margin-top: 1rem;
 }
 
-button {
+.button-group button {
   padding: 0.5rem 1rem;
   background: #2563eb;
   color: white;
@@ -135,11 +135,11 @@ button {
   transition: background 0.2s;
 }
 
-button:hover {
+.button-group button:hover {
   background: #1d4ed8;
 }
 
-button:active {
+.button-group button:active {
   background: #1e40af;
 }
 
@@ -170,6 +170,25 @@ footer a {
 
 footer a:hover {
   text-decoration: underline;
+}
+
+/* Code snippets */
+.code-snippet {
+  margin-top: 1.5rem;
+  background: #1e293b;
+  border-radius: 6px;
+  padding: 1rem;
+  overflow-x: auto;
+  border: 1px solid #334155;
+}
+
+.code-snippet code {
+  color: #e2e8f0;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  display: block;
+  white-space: pre;
 }
 
 /* Touch Spin Vanilla Styles (imported from renderer) */

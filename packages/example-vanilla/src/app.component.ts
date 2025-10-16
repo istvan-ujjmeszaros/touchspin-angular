@@ -43,9 +43,11 @@ import { TouchSpinVanillaComponent } from '@touchspin/angular/vanilla';
           ></touch-spin>
           <p class="output">
             Value: <strong>{{ reactiveControl.value }}</strong>
-            <span *ngIf="reactiveControl.invalid" class="error">
-              (Invalid: {{ reactiveControl.errors | json }})
-            </span>
+            @if (reactiveControl.invalid) {
+              <span class="error">
+                (Invalid: {{ reactiveControl.errors | json }})
+              </span>
+            }
           </p>
         </div>
       </section>
@@ -194,8 +196,6 @@ import { TouchSpinVanillaComponent } from '@touchspin/angular/vanilla';
           <a href="https://github.com/istvan-ujjmeszaros/touchspin-angular" target="_blank">
             GitHub
           </a>
-          |
-          <a href="../angular/README.md" target="_blank">Documentation</a>
         </p>
       </footer>
     </div>
