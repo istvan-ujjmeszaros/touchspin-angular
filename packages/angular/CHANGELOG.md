@@ -5,6 +5,7 @@
 ### Patch Changes
 
 - chore: align renderer dependencies for local builds
+- chore: remove redundant export hints
 
 ## 5.0.1
 
