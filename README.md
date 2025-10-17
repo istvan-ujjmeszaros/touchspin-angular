@@ -15,7 +15,7 @@ Angular adapter for the TouchSpin number input component with per-renderer suppo
 ## Installation
 
 ```bash
-npm install @touchspin/angular @touchspin/core @touchspin/renderer-bootstrap5
+yarn add @touchspin/angular @touchspin/core @touchspin/renderer-bootstrap5
 ```
 
 ## Quick Start
@@ -52,19 +52,19 @@ See the [package README](./packages/angular/README.md) for complete documentatio
 
 ```bash
 # Install dependencies
-npm install
+yarn install
 
 # Build the library
-npm run build
+yarn build
 
 # Run tests
-npm run test
+yarn test
 
 # Run tests with coverage
-npm run test:coverage
+yarn test:coverage
 
 # Run tests in watch mode
-npm run test:watch
+yarn test:watch
 ```
 
 ## Package Structure

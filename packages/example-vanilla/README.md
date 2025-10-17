@@ -8,16 +8,16 @@ From the repository root:
 
 ```bash
 # Install dependencies
-npm install
+yarn install
 
 # Start the dev server
-npm run dev:vanilla
+yarn dev:vanilla
 ```
 
 Or from this directory:
 
 ```bash
-npm run dev
+yarn dev
 ```
 
 The app will be available at http://localhost:5173
@@ -52,7 +52,7 @@ Focus any TouchSpin input and use:
 ## Building
 
 ```bash
-npm run build
+yarn build
 ```
 
 Output will be in `dist/`

@@ -7,10 +7,10 @@
     "packages/example-vanilla"
   ],
   "scripts": {
-    "build": "npm run build -w @touchspin/angular",
-    "test": "npm run test -w @touchspin/angular",
-    "test:watch": "npm run test:watch -w @touchspin/angular",
-    "test:coverage": "npm run test:coverage -w @touchspin/angular",
-    "dev:vanilla": "npm run dev -w example-vanilla"
+    "build": "yarn workspace @touchspin/angular build",
+    "test": "yarn workspace @touchspin/angular test",
+    "test:watch": "yarn workspace @touchspin/angular test:watch",
+    "test:coverage": "yarn workspace @touchspin/angular test:coverage",
+    "dev:vanilla": "yarn workspace example-vanilla dev"
   }
 }

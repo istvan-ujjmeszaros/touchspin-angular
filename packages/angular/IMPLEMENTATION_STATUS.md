@@ -213,9 +213,9 @@ Add:
 
 ### Step 7: Validation
 Run:
-- `npm run build`
-- `npm run test`
-- `npm run test:coverage`
+- `yarn run build`
+- `yarn run test`
+- `yarn run test:coverage`
 - Manual test of example app
 
 ## Notes
