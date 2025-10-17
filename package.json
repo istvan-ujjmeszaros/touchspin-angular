@@ -2,6 +2,7 @@
   "name": "touchspin-angular-workspace",
   "private": true,
   "version": "1.0.0",
+  "packageManager": "yarn@4.10.3",
   "workspaces": [
     "packages/angular",
     "packages/example-vanilla"
