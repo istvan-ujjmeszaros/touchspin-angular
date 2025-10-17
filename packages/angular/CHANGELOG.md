@@ -1,5 +1,11 @@
 # @touchspin/angular
 
+## 5.0.2
+
+### Patch Changes
+
+- chore: align renderer peer declarations and dependencies
+
 ## 5.0.1
 
 ### Patch Changes
