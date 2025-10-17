@@ -36,7 +36,7 @@ import type { TouchSpinChangeMeta, TouchSpinHandle } from './types';
         #input
         type="number"
         [name]="name"
-        [id]="id"
+        [attr.id]="id"
         [class]="inputClass"
         [disabled]="disabled"
         [readonly]="readOnly"

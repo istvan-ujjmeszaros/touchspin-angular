@@ -24,6 +24,7 @@ import { TouchSpinVanillaComponent } from '@touchspin/angular/vanilla';
             [max]="100"
             [step]="1"
             ariaLabel="Basic quantity input"
+            data-testid="basic-touchspin"
           ></touch-spin>
           <p class="output">Current value: <strong>{{ basicValue }}</strong></p>
         </div>
