@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- chore: align renderer peer declarations and dependencies
+- chore: align renderer dependencies for local builds
 
 ## 5.0.1
 

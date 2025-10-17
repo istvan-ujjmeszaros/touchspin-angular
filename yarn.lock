@@ -4287,6 +4287,11 @@ __metadata:
     "@angular/platform-browser": "npm:^18.2.0"
     "@angular/platform-browser-dynamic": "npm:^18.2.0"
     "@touchspin/core": "npm:5.0.1-alpha.2"
+    "@touchspin/renderer-bootstrap3": "npm:5.0.1-alpha.1"
+    "@touchspin/renderer-bootstrap4": "npm:5.0.1-alpha.1"
+    "@touchspin/renderer-bootstrap5": "npm:5.0.1-alpha.1"
+    "@touchspin/renderer-tailwind": "npm:5.0.1-alpha.1"
+    "@touchspin/renderer-vanilla": "npm:5.0.1-alpha.4"
     "@types/jest": "npm:^30.0.0"
     "@types/jsdom": "npm:^27"
     "@types/node": "npm:^22.7.4"
@@ -4304,29 +4309,91 @@ __metadata:
     "@angular/common": ">=17.0.0"
     "@angular/core": ">=17.0.0"
     "@angular/forms": ">=17.0.0"
-    "@touchspin/renderer-bootstrap3": 5.0.1-alpha.1
-    "@touchspin/renderer-bootstrap4": 5.0.1-alpha.1
-    "@touchspin/renderer-bootstrap5": 5.0.1-alpha.1
-    "@touchspin/renderer-tailwind": 5.0.1-alpha.1
-    "@touchspin/renderer-vanilla": 5.0.1-alpha.4
-  peerDependenciesMeta:
-    "@touchspin/renderer-bootstrap3":
-      optional: true
-    "@touchspin/renderer-bootstrap4":
-      optional: true
-    "@touchspin/renderer-bootstrap5":
-      optional: true
-    "@touchspin/renderer-tailwind":
-      optional: true
-    "@touchspin/renderer-vanilla":
-      optional: true
   languageName: unknown
   linkType: soft
+
+"@touchspin/core@npm:5.0.1-alpha.0":
+  version: 5.0.1-alpha.0
+  resolution: "@touchspin/core@npm:5.0.1-alpha.0"
+  checksum: 10c0/aaa2e92a819be07c631fa25d70dd70651e1145bff3461b49b0e5c1beb53fb9ef68604ec99db2b4bc7571b464c3d111393fac76a38fd2676d3798bd9540019cd5
+  languageName: node
+  linkType: hard
 
 "@touchspin/core@npm:5.0.1-alpha.2":
   version: 5.0.1-alpha.2
   resolution: "@touchspin/core@npm:5.0.1-alpha.2"
   checksum: 10c0/ae77dfb585253b955a2036f78ff15fc53ce6dedf9f1622ad0941ef7e0c7c18cc4853b054c2ab024cf2a118e515aa558724a16ad6f206f89f7e72afcc76a75ad7
+  languageName: node
+  linkType: hard
+
+"@touchspin/renderer-bootstrap3@npm:5.0.1-alpha.1":
+  version: 5.0.1-alpha.1
+  resolution: "@touchspin/renderer-bootstrap3@npm:5.0.1-alpha.1"
+  dependencies:
+    "@touchspin/core": "npm:5.0.1-alpha.0"
+  peerDependencies:
+    bootstrap: ">=3.4.0 <4"
+    jquery: ">=1.9.0"
+  peerDependenciesMeta:
+    jquery:
+      optional: true
+  checksum: 10c0/c555a2df3b4d8e4ea45d9bc865a873d32803d9bd73eac8f882e600ed4cd8f65df01b65b5861954bd727b9dc0426cba5889722620a13b283ce7fbaf398c8fc4a3
+  languageName: node
+  linkType: hard
+
+"@touchspin/renderer-bootstrap4@npm:5.0.1-alpha.1":
+  version: 5.0.1-alpha.1
+  resolution: "@touchspin/renderer-bootstrap4@npm:5.0.1-alpha.1"
+  dependencies:
+    "@touchspin/core": "npm:5.0.1-alpha.0"
+  peerDependencies:
+    bootstrap: ">=4.6.0 <5"
+    jquery: ">=3.5.0"
+    popper.js: ">=1.16.1"
+  peerDependenciesMeta:
+    jquery:
+      optional: true
+    popper.js:
+      optional: true
+  checksum: 10c0/07350df4ef136c13f5a00bd46dae0ff2fe7f01e80a5d6edaee7a24e5443343c81aa99bcad211b18ca849f14655ba97b8cc124bc81ad8e1f2fd42259b9209b9f8
+  languageName: node
+  linkType: hard
+
+"@touchspin/renderer-bootstrap5@npm:5.0.1-alpha.1":
+  version: 5.0.1-alpha.1
+  resolution: "@touchspin/renderer-bootstrap5@npm:5.0.1-alpha.1"
+  dependencies:
+    "@touchspin/core": "npm:5.0.1-alpha.0"
+  peerDependencies:
+    "@popperjs/core": ">=2.11.8"
+    bootstrap: ">=5.3.0 <6"
+  peerDependenciesMeta:
+    "@popperjs/core":
+      optional: true
+  checksum: 10c0/b7168ab91746105252313d4fe61a4c1305a56dbe3031b4c7cc2610168698281df6f4b59735e62dbc8b583c203effe473ed524fe65c4c31a7b5061a0d9bbeda17
+  languageName: node
+  linkType: hard
+
+"@touchspin/renderer-tailwind@npm:5.0.1-alpha.1":
+  version: 5.0.1-alpha.1
+  resolution: "@touchspin/renderer-tailwind@npm:5.0.1-alpha.1"
+  dependencies:
+    "@touchspin/core": "npm:5.0.1-alpha.0"
+  peerDependencies:
+    tailwindcss: ">=3.0.0"
+  peerDependenciesMeta:
+    tailwindcss:
+      optional: true
+  checksum: 10c0/53f6ddcaf267f35ca17b3a9a3e646c87489c9d83da33453a039bd1117f70129b4e04498a4dd2f3072e10cfb1feb067bbe43b2b1b2d90a219bfbc103e9bb34cd1
+  languageName: node
+  linkType: hard
+
+"@touchspin/renderer-vanilla@npm:5.0.1-alpha.4":
+  version: 5.0.1-alpha.4
+  resolution: "@touchspin/renderer-vanilla@npm:5.0.1-alpha.4"
+  dependencies:
+    "@touchspin/core": "npm:5.0.1-alpha.2"
+  checksum: 10c0/51b9f995fd6fcbfa4558476f828fb56d7405bd064dcd2811b98d0a3a2255b2b92ae6e06bef21849d97fb415363d22189023d6a2296fb3ce69815a9b203fa74a2
   languageName: node
   linkType: hard
 
