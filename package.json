@@ -11,6 +11,12 @@
     "test": "yarn workspace @touchspin/angular test",
     "test:watch": "yarn workspace @touchspin/angular test:watch",
     "test:coverage": "yarn workspace @touchspin/angular test:coverage",
-    "dev:vanilla": "yarn workspace example-vanilla dev"
+    "dev:vanilla": "yarn workspace example-vanilla dev",
+    "changeset": "changeset",
+    "version-packages": "changeset version && yarn install",
+    "release": "changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.29.7"
   }
 }
