@@ -2,6 +2,7 @@ import { type ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { VanillaRenderer } from '@touchspin/renderer-vanilla';
 import { TouchSpinComponent } from '../src/touch-spin.component';
+import { Component, ViewChild } from '@angular/core';
 
 describe('TouchSpinComponent', () => {
   let component: TouchSpinComponent;
@@ -808,5 +809,49 @@ describe('TouchSpinComponent', () => {
 
       newFixture.destroy();
     });
+  });
+});
+
+@Component({
+  template: `
+    <touch-spin
+      #touchspin
+      [(ngModel)]="testValue"
+      [renderer]="renderer"
+    ></touch-spin>
+  `,
+})
+class TestHostComponent {
+  @ViewChild('touchspin') touchspin!: TouchSpinComponent;
+  testValue = 0;
+  renderer = VanillaRenderer;
+}
+
+describe('TouchSpinComponent with ngModel', () => {
+  let hostComponent: TestHostComponent;
+  let fixture: ComponentFixture<TestHostComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [FormsModule, TouchSpinComponent],
+      declarations: [TestHostComponent],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(TestHostComponent);
+    hostComponent = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should update ngModel when setValue is called programmatically', async () => {
+    // Check initial value
+    expect(hostComponent.testValue).toBe(0);
+
+    // Set value programmatically
+    hostComponent.touchspin.setValue(50);
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    // Check if ngModel is updated
+    expect(hostComponent.testValue).toBe(50);
   });
 });
