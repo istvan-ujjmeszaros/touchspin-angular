@@ -14,10 +14,12 @@
     "test:coverage": "yarn workspace @touchspin/angular test:coverage",
     "dev:vanilla": "yarn workspace example-vanilla dev",
     "changeset": "changeset",
-    "version-packages": "changeset version && yarn install",
-    "release": "changeset publish"
+    "version-packages": "changeset version && yarn install --mode=update-lockfile",
+    "release": "changeset publish",
+    "prepare": "node scripts/setup-husky.mjs"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.29.7"
+    "@changesets/cli": "^2.29.7",
+    "husky": "^9.1.7"
   }
 }
