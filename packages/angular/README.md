@@ -26,6 +26,10 @@ npm install @touchspin/angular @touchspin/core @touchspin/renderer-bootstrap5
 
 TouchSpin Angular ships fully AOT-compiled components. No runtime compiler imports or schema overrides are required—just install the package, import the renderer you need, and include its CSS in your global styles or component stylesheet.
 
+### Compatibility
+
+The adapter is built and tested in Angular CLI projects targeting **Angular 17, 18, 19, and 20**.  We maintain standalone example applications for each version in the [touchspin-angular-examples](https://github.com/istvan-ujjmeszaros/touchspin-angular-examples) repository.  When consuming the package in your own workspace, make sure to import the renderer stylesheet (for example `@touchspin/renderer-vanilla/css`) in your global styles or component stylesheet.
+
 ## Quick Start
 
 ### Import the Component
