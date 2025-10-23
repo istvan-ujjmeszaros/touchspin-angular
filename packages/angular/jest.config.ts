@@ -15,7 +15,11 @@ const config: Config = {
   },
   moduleNameMapper: {
     '^@touchspin/angular$': '<rootDir>/src/public-api.ts',
-    '^@touchspin/angular/(.*)$': '<rootDir>/src/$1',
+    '^@touchspin/angular/vanilla$': '<rootDir>/vanilla/src/public_api.ts',
+    '^@touchspin/angular/bootstrap3$': '<rootDir>/bootstrap3/src/public_api.ts',
+    '^@touchspin/angular/bootstrap4$': '<rootDir>/bootstrap4/src/public_api.ts',
+    '^@touchspin/angular/bootstrap5$': '<rootDir>/bootstrap5/src/public_api.ts',
+    '^@touchspin/angular/tailwind$': '<rootDir>/tailwind/src/public_api.ts',
     '^@touchspin/core$': '<rootDir>/../../node_modules/@touchspin/core/dist/index.js',
     '^@touchspin/core/(.*)$': '<rootDir>/../../node_modules/@touchspin/core/dist/$1',
     '^@touchspin/renderer-(.*)$': '<rootDir>/../../node_modules/@touchspin/renderer-$1/dist/index.js',
