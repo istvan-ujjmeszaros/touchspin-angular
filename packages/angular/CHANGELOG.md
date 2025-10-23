@@ -1,5 +1,11 @@
 # @touchspin/angular
 
+## 5.1.5
+
+### Patch Changes
+
+- 380440f: - expose renderer entry points via npm package exports and keep renderer packages as optional peer dependencies only (consumers install whichever renderer they need).
+
 ## 5.1.4
 
 ### Patch Changes
