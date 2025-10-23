@@ -20,7 +20,7 @@ Angular adapter for TouchSpin providing native Angular components with per-rende
 npm install @touchspin/angular @touchspin/core @touchspin/renderer-bootstrap5
 ```
 
-> **Note:** Install the renderer package that matches your UI framework.
+> **Note:** Install the renderer package that matches your UI framework.  The Angular adapter declares renderer packages as optional peer dependencies, so you must add whichever renderer(s) you plan to use (for example `@touchspin/renderer-vanilla` for the default styling).
 
 ## Setup
 
