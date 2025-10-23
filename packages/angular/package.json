@@ -1,6 +1,6 @@
 {
   "name": "@touchspin/angular",
-  "version": "5.1.2",
+  "version": "5.1.3",
   "description": "Angular adapter for TouchSpin with per-renderer subpaths",
   "sideEffects": false,
   "files": [
