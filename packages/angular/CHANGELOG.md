@@ -1,5 +1,26 @@
 # @touchspin/angular
 
+## 5.1.0
+
+### Minor Changes
+
+- 15e9601: Ship Angular adapter rebuilt with the Angular 20 toolchain: full AOT compilation, no JIT/runtime shims, updated unit test wiring, and verified Yarn-based consumer app flow.
+
+### Patch Changes
+
+- c7949e5: **Dependencies:**
+
+  - Updated all @touchspin/\* dependencies to latest alpha versions
+  - Core: 5.0.1-alpha.2 → 5.0.1-alpha.3
+  - Renderers: Various alpha updates for compatibility
+
+  **Compatibility:**
+
+  - Now compatible with latest TouchSpin v5 core improvements
+  - Includes type safety enhancements and bug fixes
+
+- 876ad15: Update dependencies to stable TouchSpin 5.0.1 release
+
 ## 5.0.2
 
 ### Patch Changes
