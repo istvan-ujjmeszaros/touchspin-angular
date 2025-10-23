@@ -19,3 +19,5 @@ export type {
   TouchSpinInputs,
   TouchSpinOutputs,
 } from './types';
+
+export { TOUCH_SPIN_INPUTS, TOUCH_SPIN_OUTPUTS } from './types';

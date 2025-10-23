@@ -4,7 +4,11 @@
 
 import { Component, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { TouchSpinComponent } from '@touchspin/angular';
+import {
+  TOUCH_SPIN_INPUTS,
+  TOUCH_SPIN_OUTPUTS,
+  TouchSpinComponent,
+} from '@touchspin/angular';
 import { VanillaRenderer } from '@touchspin/renderer-vanilla';
 
 @Component({
@@ -42,6 +46,8 @@ import { VanillaRenderer } from '@touchspin/renderer-vanilla';
       multi: true,
     },
   ],
+  inputs: [...TOUCH_SPIN_INPUTS],
+  outputs: [...TOUCH_SPIN_OUTPUTS],
 })
 export class TouchSpinVanillaComponent extends TouchSpinComponent {
   override renderer = VanillaRenderer;

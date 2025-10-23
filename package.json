@@ -19,6 +19,7 @@
     "prepare": "node scripts/setup-husky.mjs"
   },
   "devDependencies": {
+    "@angular/cli": "^20.3.0",
     "@changesets/cli": "^2.29.7",
     "husky": "9.1.7"
   }

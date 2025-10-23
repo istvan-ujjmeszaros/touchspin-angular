@@ -4,7 +4,11 @@
 
 import { Component, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { TouchSpinComponent } from '@touchspin/angular';
+import {
+  TOUCH_SPIN_INPUTS,
+  TOUCH_SPIN_OUTPUTS,
+  TouchSpinComponent,
+} from '@touchspin/angular';
 import { TailwindRenderer } from '@touchspin/renderer-tailwind';
 
 @Component({
@@ -42,6 +46,8 @@ import { TailwindRenderer } from '@touchspin/renderer-tailwind';
       multi: true,
     },
   ],
+  inputs: [...TOUCH_SPIN_INPUTS],
+  outputs: [...TOUCH_SPIN_OUTPUTS],
 })
 export class TouchSpinTailwindComponent extends TouchSpinComponent {
   override renderer = TailwindRenderer;
