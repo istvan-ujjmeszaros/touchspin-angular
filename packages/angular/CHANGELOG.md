@@ -1,5 +1,11 @@
 # @touchspin/angular
 
+## 5.1.4
+
+### Patch Changes
+
+- 2e84af9: Make renderer packages optional peer dependencies so consuming apps only pull the renderer(s) they use. This removes the transitive Bootstrap dependency when using the vanilla renderer. No API changes; reinstall after upgrading.
+
 ## 5.1.3
 
 ### Patch Changes
