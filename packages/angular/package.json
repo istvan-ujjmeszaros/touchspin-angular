@@ -9,6 +9,37 @@
     "LICENSE.md",
     "package.json"
   ],
+  "module": "./dist/fesm2022/touchspin-angular.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/fesm2022/touchspin-angular.mjs"
+    },
+    "./bootstrap3": {
+      "types": "./dist/bootstrap3/index.d.ts",
+      "default": "./dist/fesm2022/touchspin-angular-bootstrap3.mjs"
+    },
+    "./bootstrap4": {
+      "types": "./dist/bootstrap4/index.d.ts",
+      "default": "./dist/fesm2022/touchspin-angular-bootstrap4.mjs"
+    },
+    "./bootstrap5": {
+      "types": "./dist/bootstrap5/index.d.ts",
+      "default": "./dist/fesm2022/touchspin-angular-bootstrap5.mjs"
+    },
+    "./tailwind": {
+      "types": "./dist/tailwind/index.d.ts",
+      "default": "./dist/fesm2022/touchspin-angular-tailwind.mjs"
+    },
+    "./vanilla": {
+      "types": "./dist/vanilla/index.d.ts",
+      "default": "./dist/fesm2022/touchspin-angular-vanilla.mjs"
+    }
+  },
   "publishConfig": {
     "access": "public",
     "provenance": true
