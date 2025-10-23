@@ -23,15 +23,32 @@
   "peerDependencies": {
     "@angular/common": ">=17.0.0",
     "@angular/core": ">=17.0.0",
-    "@angular/forms": ">=17.0.0"
+    "@angular/forms": ">=17.0.0",
+    "@touchspin/renderer-bootstrap3": "^5.0.1",
+    "@touchspin/renderer-bootstrap4": "^5.0.1",
+    "@touchspin/renderer-bootstrap5": "^5.0.1",
+    "@touchspin/renderer-tailwind": "^5.0.1",
+    "@touchspin/renderer-vanilla": "^5.0.1"
+  },
+  "peerDependenciesMeta": {
+    "@touchspin/renderer-bootstrap3": {
+      "optional": true
+    },
+    "@touchspin/renderer-bootstrap4": {
+      "optional": true
+    },
+    "@touchspin/renderer-bootstrap5": {
+      "optional": true
+    },
+    "@touchspin/renderer-tailwind": {
+      "optional": true
+    },
+    "@touchspin/renderer-vanilla": {
+      "optional": true
+    }
   },
   "dependencies": {
     "@touchspin/core": "5.0.1",
-    "@touchspin/renderer-bootstrap3": "5.0.1",
-    "@touchspin/renderer-bootstrap4": "5.0.1",
-    "@touchspin/renderer-bootstrap5": "5.0.1",
-    "@touchspin/renderer-tailwind": "5.0.1",
-    "@touchspin/renderer-vanilla": "5.0.1",
     "rxjs": "^7.8.1",
     "tslib": "^2.7.0"
   },
@@ -44,6 +61,11 @@
     "@angular/forms": "^19.2.0",
     "@angular/platform-browser": "^19.2.0",
     "@angular/platform-browser-dynamic": "^19.2.0",
+    "@touchspin/renderer-bootstrap3": "5.0.1",
+    "@touchspin/renderer-bootstrap4": "5.0.1",
+    "@touchspin/renderer-bootstrap5": "5.0.1",
+    "@touchspin/renderer-tailwind": "5.0.1",
+    "@touchspin/renderer-vanilla": "5.0.1",
     "@types/jest": "^29.5.12",
     "@types/jsdom": "^21.1.7",
     "@types/node": "^20.14.12",
