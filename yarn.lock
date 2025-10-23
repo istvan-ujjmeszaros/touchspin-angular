@@ -3379,6 +3379,22 @@ __metadata:
     "@angular/common": ">=17.0.0"
     "@angular/core": ">=17.0.0"
     "@angular/forms": ">=17.0.0"
+    "@touchspin/renderer-bootstrap3": ^5.0.1
+    "@touchspin/renderer-bootstrap4": ^5.0.1
+    "@touchspin/renderer-bootstrap5": ^5.0.1
+    "@touchspin/renderer-tailwind": ^5.0.1
+    "@touchspin/renderer-vanilla": ^5.0.1
+  peerDependenciesMeta:
+    "@touchspin/renderer-bootstrap3":
+      optional: true
+    "@touchspin/renderer-bootstrap4":
+      optional: true
+    "@touchspin/renderer-bootstrap5":
+      optional: true
+    "@touchspin/renderer-tailwind":
+      optional: true
+    "@touchspin/renderer-vanilla":
+      optional: true
   languageName: unknown
   linkType: soft
 
