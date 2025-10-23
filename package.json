@@ -5,14 +5,14 @@
   "packageManager": "yarn@4.10.3",
   "workspaces": [
     "packages/angular",
-    "packages/example-vanilla"
+    "packages/example-angular"
   ],
   "scripts": {
     "build": "yarn workspace @touchspin/angular build",
     "test": "yarn workspace @touchspin/angular test",
     "test:watch": "yarn workspace @touchspin/angular test:watch",
     "test:coverage": "yarn workspace @touchspin/angular test:coverage",
-    "dev:vanilla": "yarn workspace example-vanilla dev",
+    "dev:angular": "yarn workspace example-angular start",
     "changeset": "changeset",
     "version-packages": "changeset version && yarn install --mode=update-lockfile",
     "release": "changeset publish",

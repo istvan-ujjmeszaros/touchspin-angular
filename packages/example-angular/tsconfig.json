@@ -1,0 +1,26 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ES2022",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "types": [],
+    "baseUrl": ".",
+    "paths": {
+      "@touchspin/angular": ["../angular/src/public-api"],
+      "@touchspin/angular/*": ["../angular/src/*"],
+      "@touchspin/angular/vanilla": ["../angular/vanilla/src/public_api"],
+      "@touchspin/angular/bootstrap3": ["../angular/bootstrap3/src/public_api"],
+      "@touchspin/angular/bootstrap4": ["../angular/bootstrap4/src/public_api"],
+      "@touchspin/angular/bootstrap5": ["../angular/bootstrap5/src/public_api"],
+      "@touchspin/angular/tailwind": ["../angular/tailwind/src/public_api"]
+    }
+  },
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    }
+  ]
+}
