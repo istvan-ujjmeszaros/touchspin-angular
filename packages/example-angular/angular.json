@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "defaultProject": "example-angular",
+  "projects": {
+    "example-angular": {
+      "projectType": "application",
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "src/main.ts",
+            "polyfills": ["zone.js"],
+            "assets": [{
+              "glob": "**/*",
+              "input": "public"
+            }],
+            "styles": ["src/styles.css"],
+            "tsConfig": "tsconfig.app.json"
+          },
+          "configurations": {
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            },
+            "production": {
+              "outputHashing": "all"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "options": {
+            "buildTarget": "example-angular:build:development"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "example-angular:build:production"
+            }
+          }
+        }
+      }
+    }
+  }
+}

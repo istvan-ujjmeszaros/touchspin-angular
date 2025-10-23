@@ -110,3 +110,27 @@ export interface TouchSpinHandle {
   /** Get core API instance */
   getCore(): TouchSpinCorePublicAPI | null;
 }
+
+export const TOUCH_SPIN_INPUTS = [
+  'value',
+  'defaultValue',
+  'min',
+  'max',
+  'step',
+  'decimals',
+  'prefix',
+  'suffix',
+  'disabled',
+  'readOnly',
+  'name',
+  'id',
+  'class',
+  'inputClass',
+  'testId: data-testid',
+  'coreOptions',
+  'ariaLabel',
+  'ariaLabelledBy',
+  'renderer',
+] as const;
+
+export const TOUCH_SPIN_OUTPUTS = ['valueChange', 'change', 'blurred', 'focused'] as const;

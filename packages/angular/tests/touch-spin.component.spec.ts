@@ -1,8 +1,9 @@
 import { type ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { VanillaRenderer } from '@touchspin/renderer-vanilla';
-import { TouchSpinComponent } from '../src/touch-spin.component';
 import { Component, ViewChild } from '@angular/core';
+import { TouchSpinComponent } from '../src/touch-spin.component';
+import { VanillaRenderer } from '@touchspin/renderer-vanilla';
+import { TouchSpinVanillaComponent } from '@touchspin/angular/vanilla';
 
 describe('TouchSpinComponent', () => {
   let component: TouchSpinComponent;
@@ -813,18 +814,18 @@ describe('TouchSpinComponent', () => {
 });
 
 @Component({
+  standalone: true,
+  imports: [FormsModule, TouchSpinVanillaComponent],
   template: `
     <touch-spin
       #touchspin
       [(ngModel)]="testValue"
-      [renderer]="renderer"
     ></touch-spin>
   `,
 })
 class TestHostComponent {
   @ViewChild('touchspin') touchspin!: TouchSpinComponent;
   testValue = 0;
-  renderer = VanillaRenderer;
 }
 
 describe('TouchSpinComponent with ngModel', () => {
@@ -833,8 +834,7 @@ describe('TouchSpinComponent with ngModel', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormsModule, TouchSpinComponent],
-      declarations: [TestHostComponent],
+      imports: [TestHostComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestHostComponent);

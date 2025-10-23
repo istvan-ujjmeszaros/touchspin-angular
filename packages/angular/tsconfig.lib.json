@@ -6,5 +6,9 @@
     "declarationMap": true,
     "inlineSources": true
   },
+  "angularCompilerOptions": {
+    "compilationMode": "full",
+    "enableIvy": true
+  },
   "exclude": ["tests/**/*.ts", "**/*.spec.ts"]
 }

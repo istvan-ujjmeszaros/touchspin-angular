@@ -22,6 +22,10 @@ npm install @touchspin/angular @touchspin/core @touchspin/renderer-bootstrap5
 
 > **Note:** Install the renderer package that matches your UI framework.
 
+## Setup
+
+TouchSpin Angular ships fully AOT-compiled components. No runtime compiler imports or schema overrides are required—just install the package, import the renderer you need, and include its CSS in your global styles or component stylesheet.
+
 ## Quick Start
 
 ### Import the Component

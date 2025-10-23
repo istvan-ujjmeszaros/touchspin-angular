@@ -4,7 +4,11 @@
 
 import { Component, forwardRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { TouchSpinComponent } from '@touchspin/angular';
+import {
+  TOUCH_SPIN_INPUTS,
+  TOUCH_SPIN_OUTPUTS,
+  TouchSpinComponent,
+} from '@touchspin/angular';
 import { Bootstrap5Renderer } from '@touchspin/renderer-bootstrap5';
 
 @Component({
@@ -42,6 +46,8 @@ import { Bootstrap5Renderer } from '@touchspin/renderer-bootstrap5';
       multi: true,
     },
   ],
+  inputs: [...TOUCH_SPIN_INPUTS],
+  outputs: [...TOUCH_SPIN_OUTPUTS],
 })
 export class TouchSpinBootstrap5Component extends TouchSpinComponent {
   override renderer = Bootstrap5Renderer;
