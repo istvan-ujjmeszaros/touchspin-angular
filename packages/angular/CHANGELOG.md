@@ -1,5 +1,11 @@
 # @touchspin/angular
 
+## 5.1.2
+
+### Patch Changes
+
+- Rebuild the Angular adapter with the Angular 19 toolchain in partial compilation mode so it runs without shims on Angular 18/19/20 consumers.
+
 ## 5.1.1
 
 ### Patch Changes
@@ -19,7 +25,7 @@
 
 - c7949e5: **Dependencies:**
 
-  - Updated all @touchspin/* dependencies to latest alpha versions
+  - Updated all @touchspin/\* dependencies to latest alpha versions
   - Core: 5.0.1-alpha.2 → 5.0.1-alpha.3
   - Renderers: Various alpha updates for compatibility
 

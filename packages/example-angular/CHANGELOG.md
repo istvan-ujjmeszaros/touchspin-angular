@@ -1,5 +1,12 @@
 # example-angular
 
+## 1.0.3
+
+### Patch Changes
+
+- Updated dependencies
+  - @touchspin/angular@5.1.2
+
 ## 1.0.2
 
 ### Patch Changes
