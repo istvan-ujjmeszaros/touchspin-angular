@@ -4,17 +4,10 @@
 
 ### Patch Changes
 
-- **Fix:** Ensure subpath exports are properly included in published package
-
-  **Issue:** Published package was missing subpath directories and exports field
-
-  **Changes:**
-
-  - Verified subpath exports are present in built dist
-  - Ensured all renderer components are properly exported
-  - Fixed package structure for npm publication
-
-  **Result:** Users can now import `@touchspin/angular/vanilla` and other renderers from npm
+- Fix: Ensure subpath exports are properly included in published package
+  - Published package was missing subpath directories and exports field
+  - Subpath exports now match the built dist contents
+  - Users can import renderer components such as `@touchspin/angular/vanilla`
 
 ## 5.1.0
 
@@ -26,7 +19,7 @@
 
 - c7949e5: **Dependencies:**
 
-  - Updated all @touchspin/\* dependencies to latest alpha versions
+  - Updated all @touchspin/* dependencies to latest alpha versions
   - Core: 5.0.1-alpha.2 → 5.0.1-alpha.3
   - Renderers: Various alpha updates for compatibility
 
@@ -48,15 +41,15 @@
 
 ### Patch Changes
 
-- - Fixed a bug where programmatic value changes using `setValue()` did not update the `ngModel`.
-  - Added a test to reproduce the `ngModel` update bug.
-  - Fixed a bug where `id="undefined"` was being added to the input element.
-  - Configured the project to use Yarn with a `node_modules` linker to ensure compatibility with Vite.
-  - Replaced `npm` commands with `yarn` in documentation and scripts.
-  - Removed failing keyboard navigation tests.
-  - Added a `data-testid` to the first touchspin instance in the example app.
-  - Updated dependencies
-    - @touchspin/core@5.0.1-alpha.2
+- Fixed a bug where programmatic value changes using `setValue()` did not update the `ngModel`.
+- Added a test to reproduce the `ngModel` update bug.
+- Fixed a bug where `id="undefined"` was being added to the input element.
+- Configured the project to use Yarn with a `node_modules` linker to ensure compatibility with Vite.
+- Replaced `npm` commands with `yarn` in documentation and scripts.
+- Removed failing keyboard navigation tests.
+- Added a `data-testid` to the first touchspin instance in the example app.
+- Updated dependencies
+  - @touchspin/core@5.0.1-alpha.2
 
 ## 5.0.1-alpha.0
 
