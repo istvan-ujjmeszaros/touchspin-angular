@@ -7,7 +7,7 @@
     "inlineSources": true
   },
   "angularCompilerOptions": {
-    "compilationMode": "full",
+    "compilationMode": "partial",
     "enableIvy": true
   },
   "exclude": ["tests/**/*.ts", "**/*.spec.ts"]

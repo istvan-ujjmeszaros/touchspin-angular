@@ -16,5 +16,8 @@
     "emitDecoratorMetadata": true,
     "baseUrl": "."
   },
+  "angularCompilerOptions": {
+    "compilationMode": "partial"
+  },
   "exclude": ["tests/**/*.ts", "**/*.spec.ts", "node_modules"]
 }
