@@ -69,43 +69,82 @@ export interface TouchSpinInputs {
 }
 
 /**
- * Outputs (events) emitted by TouchSpin component
- */
+* Outputs (events) emitted by TouchSpin component
+*/
 export interface TouchSpinOutputs {
-  /** Emitted when value changes (simple number value) */
-  valueChange: number;
+/** Emitted when value changes (simple number value) */
+valueChange: number;
 
-  /** Emitted when value changes (detailed with metadata) */
-  change: { value: number; meta: TouchSpinChangeMeta };
+/** Emitted when value changes (detailed with metadata) */
+change: { value: number; meta: TouchSpinChangeMeta };
 
-  /** Emitted when input loses focus */
-  blurred: void;
+/** Emitted when input loses focus */
+blurred: void;
 
-  /** Emitted when input gains focus */
-  focused: void;
+/** Emitted when input gains focus */
+focused: void;
+
+  /** Emitted when minimum boundary is reached */
+  onMin: void;
+
+  /** Emitted when maximum boundary is reached */
+  onMax: void;
+
+  /** Emitted when spinning starts */
+  onStartSpin: void;
+
+  /** Emitted when spinning stops */
+  onStopSpin: void;
+
+  /** Emitted when upward spinning starts */
+  onStartUpSpin: void;
+
+  /** Emitted when downward spinning starts */
+  onStartDownSpin: void;
+
+  /** Emitted when upward spinning stops */
+  onStopUpSpin: void;
+
+  /** Emitted when downward spinning stops */
+  onStopDownSpin: void;
+
+  /** Emitted when spin speed increases */
+  onSpeedChange: void;
 }
 
 /**
- * Imperative handle for programmatic control
- */
+* Imperative handle for programmatic control
+*/
 export interface TouchSpinHandle {
-  /** Focus the input */
-  focus(): void;
+/** Focus the input */
+focus(): void;
 
-  /** Blur the input */
-  blur(): void;
+/** Blur the input */
+blur(): void;
 
-  /** Increment value by step */
-  increment(): void;
+/** Increment value by step */
+increment(): void;
 
-  /** Decrement value by step */
-  decrement(): void;
+/** Decrement value by step */
+decrement(): void;
 
-  /** Get current value */
-  getValue(): number;
+/** Get current value */
+getValue(): number;
 
-  /** Set value programmatically */
-  setValue(value: number): void;
+/** Set value programmatically */
+setValue(value: number): void;
+
+/** Start continuous upward spinning */
+startUpSpin(): void;
+
+  /** Start continuous downward spinning */
+  startDownSpin(): void;
+
+  /** Stop any continuous spinning */
+  stopSpin(): void;
+
+  /** Update settings at runtime */
+  updateSettings(opts: Partial<TouchSpinCoreOptions>): void;
 
   /** Get core API instance */
   getCore(): TouchSpinCorePublicAPI | null;
@@ -133,4 +172,18 @@ export const TOUCH_SPIN_INPUTS = [
   'renderer',
 ] as const;
 
-export const TOUCH_SPIN_OUTPUTS = ['valueChange', 'change', 'blurred', 'focused'] as const;
+export const TOUCH_SPIN_OUTPUTS = [
+  'valueChange',
+  'change',
+  'blurred',
+  'focused',
+  'onMin',
+  'onMax',
+  'onStartSpin',
+  'onStopSpin',
+  'onStartUpSpin',
+  'onStartDownSpin',
+  'onStopUpSpin',
+  'onStopDownSpin',
+  'onSpeedChange'
+] as const;

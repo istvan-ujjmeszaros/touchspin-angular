@@ -166,11 +166,21 @@ export class TouchSpinComponent
   @Output() change = new EventEmitter<{ value: number; meta: TouchSpinChangeMeta }>();
   @Output() blurred = new EventEmitter<void>();
   @Output() focused = new EventEmitter<void>();
+  @Output() onMin = new EventEmitter<void>();
+  @Output() onMax = new EventEmitter<void>();
+  @Output() onStartSpin = new EventEmitter<void>();
+  @Output() onStopSpin = new EventEmitter<void>();
+  @Output() onStartUpSpin = new EventEmitter<void>();
+  @Output() onStartDownSpin = new EventEmitter<void>();
+  @Output() onStopUpSpin = new EventEmitter<void>();
+  @Output() onStopDownSpin = new EventEmitter<void>();
+  @Output() onSpeedChange = new EventEmitter<void>();
 
   // Internal state
   private instance: TouchSpinCorePublicAPI | null = null;
   private internalValue = 0;
   private changeListener: (() => void) | null = null;
+  private touchSpinEventListeners: Array<{ event: string; handler: () => void; element: HTMLElement }> = [];
 
   // ControlValueAccessor callbacks
   private onChange: (value: number) => void = () => {};
@@ -293,9 +303,27 @@ export class TouchSpinComponent
     this.instance?.setValue(value);
   }
 
+  startUpSpin(): void {
+    this.instance?.startUpSpin();
+  }
+
+  startDownSpin(): void {
+    this.instance?.startDownSpin();
+  }
+
+  stopSpin(): void {
+    this.instance?.stopSpin();
+  }
+
+  updateSettings(opts: Partial<TouchSpinCoreOptions>): void {
+    this.instance?.updateSettings(opts);
+  }
+
   getCore(): TouchSpinCorePublicAPI | null {
     return this.instance;
   }
+
+
 
   // Internal helpers
   private applyExternalValue(rawValue: number): void {
@@ -399,6 +427,30 @@ export class TouchSpinComponent
     };
 
     input.addEventListener('change', this.changeListener);
+
+    // TouchSpin event listeners
+    const touchSpinEvents = [
+      { event: 'touchspin.on.min', handler: () => this.onMin.emit() },
+      { event: 'touchspin.on.max', handler: () => this.onMax.emit() },
+      { event: 'touchspin.on.startspin', handler: () => this.onStartSpin.emit() },
+      { event: 'touchspin.on.stopspin', handler: () => this.onStopSpin.emit() },
+      { event: 'touchspin.on.startupspin', handler: () => this.onStartUpSpin.emit() },
+      { event: 'touchspin.on.startdownspin', handler: () => this.onStartDownSpin.emit() },
+      { event: 'touchspin.on.stopupspin', handler: () => this.onStopUpSpin.emit() },
+      { event: 'touchspin.on.stopdownspin', handler: () => this.onStopDownSpin.emit() },
+      { event: 'touchspin.on.speedchange', handler: () => this.onSpeedChange.emit() },
+    ];
+
+    touchSpinEvents.forEach(({ event, handler }) => {
+      input.addEventListener(event, handler);
+    });
+
+    // Store cleanup functions
+    this.touchSpinEventListeners = touchSpinEvents.map(({ event, handler }) => ({
+      event,
+      handler,
+      element: input
+    }));
   }
 
   private cleanup(): void {
@@ -406,6 +458,12 @@ export class TouchSpinComponent
       this.inputRef.nativeElement.removeEventListener('change', this.changeListener);
       this.changeListener = null;
     }
+
+    // Clean up TouchSpin event listeners
+    this.touchSpinEventListeners.forEach(({ event, handler, element }) => {
+      element.removeEventListener(event, handler);
+    });
+    this.touchSpinEventListeners = [];
 
     if (this.instance) {
       this.instance.destroy();
